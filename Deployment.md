@@ -5,7 +5,7 @@
     •Enter your credentials to log in.
 
 2. Create an EC2 Instance
-    •Search for "EC2" in the AWS console search bar.
+    •Search for "EC2" in the AWS console search bar. \n
     •Click on "Launch Instance" to start the setup process.
     •Choose an Amazon Machine Image (AMI): Select the Ubuntu Server x86 image.
     •Select an Instance Type: Choose t2.micro (or a larger instance if needed).

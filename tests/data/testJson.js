@@ -142,11 +142,10 @@ const testCases = [
         },
     },
     {
-        name: 'java : print stdin',
+        name: 'java : hello world',
         reqObject: {
             language: 'java',
             script:
-                'import java.util.Scanner;\n' +
                 'public class Solution {\n' +
                 '    public static void main(String[] args) {\n' +
                 '        System.out.println("hello world");\n' +
@@ -184,7 +183,7 @@ const testCases = [
         },
     },
     {
-        name: 'ruby : print hello world',
+        name: 'ruby : hello world',
         reqObject: {
             language: 'ruby',
             script:
@@ -207,6 +206,319 @@ const testCases = [
         },
         expectedResponse: {
             val: '10\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'typescript : hello world',
+        reqObject: {
+            language: 'typescript',
+            script:
+                'console.log("hello world");',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'typescript : print stdin',
+        reqObject: {
+            language: 'typescript',
+            script:
+                'import * as readline from "readline";\n' +
+                'const rl = readline.createInterface({\n' +
+                '    input: process.stdin,\n' +
+                '    output: process.stdout\n' +
+                '});\n' +
+                'rl.on("line", (input) => {\n' +
+                '    console.log(input);\n' +
+                '});',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'go : hello world',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import "fmt"\n' +
+                'func main() {\n' +
+                '    fmt.Println("hello world")\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'go : print stdin',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import (\n' +
+                '    "bufio"\n' +
+                '    "fmt"\n' +
+                '    "os"\n' +
+                ')\n' +
+                'func main() {\n' +
+                '    scanner := bufio.NewScanner(os.Stdin)\n' +
+                '    for scanner.Scan() {\n' +
+                '        fmt.Println(scanner.Text())\n' +
+                '    }\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'php : hello world',
+        reqObject: {
+            language: 'php',
+            script: '<?php echo "hello world"; ?>',
+        },
+        expectedResponse: {
+            val: 'hello world',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'php : print stdin',
+        reqObject: {
+            language: 'php',
+            script: '<?php while($line = fgets(STDIN)) { echo $line; } ?>',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'swift : hello world',
+        reqObject: {
+            language: 'swift',
+            script: 'print("hello world")',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'swift : print stdin',
+        reqObject: {
+            language: 'swift',
+            script:
+                'import Foundation\n' +
+                'while let line = readLine() {\n' +
+                '    print(line)\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : hello world',
+        reqObject: {
+            language: 'rust',
+            script:
+                'fn main() {\n' +
+                '    println!("hello world");\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : print stdin',
+        reqObject: {
+            language: 'rust',
+            script:
+                'use std::io::{self, BufRead};\n' +
+                'fn main() {\n' +
+                '    let stdin = io::stdin();\n' +
+                '    for line in stdin.lock().lines() {\n' +
+                '        println!("{}", line.unwrap());\n' +
+                '    }\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'kotlin : hello world',
+        reqObject: {
+            language: 'kotlin',
+            script:
+                'fun main() {\n' +
+                '    println("hello world")\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'kotlin : print stdin',
+        reqObject: {
+            language: 'kotlin',
+            script:
+                'import java.util.Scanner\n' +
+                'fun main() {\n' +
+                '    val scanner = Scanner(System.`in`)\n' +
+                '    while (scanner.hasNextLine()) {\n' +
+                '        println(scanner.nextLine())\n' +
+                '    }\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'perl : hello world',
+        reqObject: {
+            language: 'perl',
+            script: 'print "hello world\\n";',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'perl : print stdin',
+        reqObject: {
+            language: 'perl',
+            script: 'while (<STDIN>) { print $_; }',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'haskell : hello world',
+        reqObject: {
+            language: 'haskell',
+            script: 'main = putStrLn "hello world"',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'haskell : print stdin',
+        reqObject: {
+            language: 'haskell',
+            script:
+                'import System.IO\n' +
+                'main = do\n' +
+                '    input <- getContents\n' +
+                '    putStr input',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'scala : hello world',
+        reqObject: {
+            language: 'scala',
+            script:
+                'object Main extends App {\n' +
+                '  println("hello world")\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'scala : print stdin',
+        reqObject: {
+            language: 'scala',
+            script:
+                'object Main extends App {\n' +
+                '  scala.io.Source.stdin.getLines.foreach(println)\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'lua : hello world',
+        reqObject: {
+            language: 'lua',
+            script: 'print("hello world")',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'lua : print stdin',
+        reqObject: {
+            language: 'lua',
+            script:
+                'for line in io.lines() do\n' +
+                '  print(line)\n' +
+                'end',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
             status: 200,
             error: 0,
         },
@@ -298,6 +610,6 @@ const testCases = [
             error: 0,
         },
     },
-]
+];
 
-module.exports = { testCases }
+module.exports = { testCases };

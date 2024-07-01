@@ -1,8 +1,11 @@
 FROM docker.io/library/node:20.13.0-alpine
 
 ENV PYTHONUNBUFFERED=1
+
 RUN set -ex && \
-    apk add --no-cache gcc g++ musl-dev python3 openjdk17 ruby iptables ip6tables
+    apk add --no-cache \
+    gcc g++ musl-dev python3 openjdk17 ruby iptables ip6tables \
+    go php7 php7-cli swift rust cargo kotlin perl haskell ghc scala lua lua-dev
 
 RUN set -ex && \
     apk add --no-cache chromium lsof
@@ -19,9 +22,15 @@ ADD . /usr/bin/
 ADD start.sh /usr/bin/
 
 RUN npm --prefix /usr/bin/ install
+RUN npm install -g typescript ts-node
+
+ENV GOROOT=/usr/lib/go
+ENV PATH=$GOROOT/bin:$PATH
+
 EXPOSE 8080
 
-# add a dummy user that will run the server, hence sandboxing the rest of the container
 RUN addgroup -S -g 2000 runner && adduser -S -D -u 2000 -s /sbin/nologin -h /tmp -G runner runner
-#   USER runner
+
+USER runner
 CMD sh /usr/bin/start.sh
+

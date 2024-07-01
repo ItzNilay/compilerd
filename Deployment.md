@@ -3,7 +3,6 @@
 1. Log in to AWS Console<br />
     •Navigate to the AWS Management Console. <br />
     •Enter your credentials to log in. <br />
-<br />
 2. Create an EC2 Instance<br />
     •Search for "EC2" in the AWS console search bar. <br />
     •Click on "Launch Instance" to start the setup process.<br />
